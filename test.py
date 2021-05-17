@@ -9,9 +9,9 @@ def main():
         "jpeg",
         "png",
     ]
-    imgs = [x for x in all_files if x[-3:].lower() in extensions]
+    imgs = [f"hw/{x}" for x in all_files if x[-3:].lower() in extensions]
     im1 = Image.open(imgs[0])
-    im_list = [Image.open(f"./hw/{x}").convert("RGB") for x in imgs]
+    im_list = [Image.open(f"./{x}").convert("RGB") for x in imgs]
     pdf1_filename = "new.pdf"
 
     im1.save(
