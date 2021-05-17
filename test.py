@@ -1,4 +1,5 @@
 import os
+import sys
 from PIL import Image
 
 
@@ -10,9 +11,10 @@ def main():
         "png",
     ]
     imgs = [f"hw/{x}" for x in all_files if x[-3:].lower() in extensions]
+    im_list = [Image.open(f"./{x}").convert("RGB") for x in imgs[1:]]
     im1 = Image.open(imgs[0]).convert("RGB")
-    im_list = [Image.open(f"./{x}").convert("RGB") for x in imgs]
-    pdf1_filename = "new.pdf"
+    pdf1_filename = f"{sys.argv[0]}.pdf"
+    print(sys.argv[0])
 
     im1.save(
         pdf1_filename, "PDF", resolution=100.0, save_all=True, append_images=im_list
