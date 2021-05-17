@@ -10,6 +10,8 @@ def main():
         "jpg",
         "jpeg",
         "png",
+        "webp",
+        "tiff",
     ]
     imgs = [f"{folder}/{x}" for x in all_files if x[-3:].lower() in extensions]
     im_list = [Image.open(f"./{x}").convert("RGB") for x in imgs[1:]]
