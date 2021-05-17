@@ -10,7 +10,7 @@ def main():
         "png",
     ]
     imgs = [f"hw/{x}" for x in all_files if x[-3:].lower() in extensions]
-    im1 = Image.open(imgs[0])
+    im1 = Image.open(imgs[0]).convert("RGB")
     im_list = [Image.open(f"./{x}").convert("RGB") for x in imgs]
     pdf1_filename = "new.pdf"
 
