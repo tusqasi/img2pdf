@@ -8,6 +8,8 @@ def main():
         "jpg",
         "jpeg",
         "png",
+        "webp",
+        "tiff",
     ]
     imgs = [f"hw/{x}" for x in all_files if x[-3:].lower() in extensions]
     im1 = Image.open(imgs[0])
