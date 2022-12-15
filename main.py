@@ -4,7 +4,7 @@ from pathlib import Path
 from PIL import Image
 
 
-def save_to_pdf(pdf_file_path: Path, images: list) -> None:
+def save_to_pdf(pdf_file_path: Path, images: list[Image.Image]) -> None:
     images[0].save(
         pdf_file_path / "pdf_export_file.pdf",
         "PDF",
@@ -16,9 +16,9 @@ def save_to_pdf(pdf_file_path: Path, images: list) -> None:
 
 def main():
     extensions: list[str] = [
-        "jpg",
-        "jpeg",
-        "png",
+        ".jpg",
+        ".jpeg",
+        ".png",
     ]
     # if has 2 args out put is set
     # if has 1 arg out put is not set
@@ -32,15 +32,13 @@ def main():
     # finds the image files with extensions in the list extensions
     imgs = list()
     for file in Path.iterdir(images_folder):
-        if file.suffix in extensions:
-            imgs.append(Image.open(f"{images_folder}/{file}").convert("RGB"))
+        if file.suffix.lower() in extensions:
+            imgs.append(Image.open(f"{file}").convert("RGB"))
     if len(imgs) == 0:
         print(f"No images in {images_folder}\nExiting")
         return 0
 
-    # TODO: proper file name
-    pdf1_filename = f"{images_folder}.pdf"
-    save_to_pdf(pdf_export_path, im_list)
+    save_to_pdf(pdf_export_path, imgs)
     print("Done")
 
 
